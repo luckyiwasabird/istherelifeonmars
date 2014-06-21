@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href='http://fonts.googleapis.com/css?family=Snippet|Codystar|Nothing+You+Could+Do|Aclonica|Sacramento|Cinzel+Decorative|Mystery+Quest' rel='stylesheet' type='text/css'>    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+<body>
+    <div style="z-index:123;position: fixed;font-family: 'Nothing You Could Do';font-size: 50px;bottom: 0px;right: 10px;text-decoration: underline;cursor: pointer;" id="till-the-end">till the end</div>
+    <div id="question-answer">
+        <div id="question" style="font-family: 'Nothing You Could Do';font-size:2000px; text-align:center;">Is there life on Mars?</div>
+        <div id="answer-cont" style="display:none;width:840px;">
+            <input id="answer" style="outline: 0!important; border: 0px;width: 80%;border-bottom: 3px solid; margin-top: 10px;font-family: 'Nothing You Could Do';font-size: 90px;"/>
+            <span style="cursor:pointer;font-family:cursive;font-size:90px;">&#10003;</span>
+        </div>
+    </div>
+</body>
+<script>
+    $(document ).ready(function(){
+
+        // scroll binding
+        $(document ).scroll(function(){
+            var fontSize = $("#question" ).css('font-size');
+            fontSize = parseFloat(fontSize) - 10;
+            if (fontSize>70){
+                $("#question" ).css('font-size', fontSize);
+            }
+            else {
+                $("#till-the-end" ).hide();
+                setTimeout(function(){
+                    $("#answer-cont" ).show();
+                },1000);
+            }
+            $("#question-answer" ).center();
+        });
+
+        // till the end
+        $("#till-the-end" ).click(function(){
+            $( "#question" ).animate({
+                "font-size": "80"
+            }, 3000, function() {
+                $("#question-answer" ).center();
+                $("#till-the-end").hide();
+                setTimeout(function(){
+                    $("#answer-cont" ).show();
+                },1000);
+            });
+        });
+
+    })
+
+    jQuery.fn.center = function () {
+        this.css("position","absolute");
+        this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) +
+                $(window).scrollTop()) + "px");
+        this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) +
+                $(window).scrollLeft()) + "px");
+        return this;
+    }
+
+</script>
+</html>
